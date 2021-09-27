@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "nosql_db"
+
+# p 'here'
+handler = NosqlDb::CommandHandler.new
+# puts handler.class.ancestors
+handler.handle
