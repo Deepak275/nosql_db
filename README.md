@@ -1,35 +1,28 @@
 # NosqlDb
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/nosql_db`. To experiment with that code, run `bin/console` for an interactive prompt.
+Basic cli for performing Nosql insert,find, delete queries. It stores the data as json in a file.
 
-TODO: Delete this and the text above, and describe your gem
+## Local Setup
 
-## Installation
+* Clone the repo in your working dir and cd hote_automation.
+* Run `bundle install` to install the dependency gems.
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'nosql_db'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install nosql_db
+## RUN in your local
+*  Run `chmod a+x bin/hotel_automation`
 
 ## Usage
+#### Insert: 
+1. Run `./bin/nosql_db insert <stringified-json>` to insert a document.
+  Eg: `./bin/nosql_db insert '{"a":4,"b":8}'`
 
-TODO: Write usage instructions here
+2. Run `./bin/nosql_db find <value-to-matched> <optional, fields to show>` to find a document using value.
+   It also supports to show only selected fields.
+  Eg: `./bin/nosql_db find  '6' 'a'`
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
+3. Run `./bin/nosql_db delete <key-value>` to be delete a documents.
+    Eg: `./bin/nosql_db delete 'b,7'`
+## Dependency
+* Ruby: 2.5.7
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/nosql_db. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
