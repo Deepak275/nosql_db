@@ -20,7 +20,9 @@ module NosqlDb
         delete_record = NosqlDb::Delete.new(ARGV.last)
         delete_record.find_and_delete
       when 'find'
-        find_record = NosqlDb::Find.new(ARGV.last)
+        value = ARGV[1]
+        fields = ARGV[2]
+        find_record = NosqlDb::Find.new(value, fields)
         find_record.search
       else
         puts "wrong command, please try again"

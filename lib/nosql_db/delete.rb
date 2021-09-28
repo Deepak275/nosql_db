@@ -16,14 +16,13 @@ module NosqlDb
       
       json_store = JSON.parse(@file_data)
 
-      json_store.each do |stringified_hash|
-        hash = eval(stringified_hash)
+      json_store.each do |hash|
         hash.each do |k, v|
           k = k.to_s
           v = v.to_s
-          # puts "k: #{k.class}, v: #{v.class}, @value: #{@value.class}, @key: #{@key.class}"
+
           if v == @value && k == @key
-            json_store.delete(stringified_hash)
+            json_store.delete(hash)
             break
           end  
         end
