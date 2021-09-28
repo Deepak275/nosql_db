@@ -8,16 +8,14 @@ module NosqlDb
 
     def initialize
       @file_data = File.read("store.json")
-      insert_runnning!
-      
+      insert_runnning!  
     end
 
     def save(input_data)
-      p json_data = JSON.parse(@file_data)
+      json_data = JSON.parse(@file_data)
       json_data << input_data
 
       File.open("store.json","w") do |f|
-        # f.puts json_data.to_json
         f.puts JSON.pretty_generate(json_data)
       end
 

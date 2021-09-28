@@ -1,17 +1,16 @@
 require 'json'
 
 module NosqlDb
-  class Delete
+  class Find
+    attr_accessor :matched_records, :value
 
-    attr_accessor :file_data, :key, :value
-
-    def initialize(input)
+    def initialize(value)
       @file_data = File.read("store.json")
-      @key, @value = *(input.split(','))
+      @value = value
     end
 
-
-    def find_and_delete
+    def search
+      @matched_records = []
       sleep_if_writting
       
       json_store = JSON.parse(@file_data)
@@ -19,19 +18,14 @@ module NosqlDb
       json_store.each do |stringified_hash|
         hash = eval(stringified_hash)
         hash.each do |k, v|
-          k = k.to_s
           v = v.to_s
-          # puts "k: #{k.class}, v: #{v.class}, @value: #{@value.class}, @key: #{@key.class}"
-          if v == @value && k == @key
-            json_store.delete(stringified_hash)
+          if v == @value
+            @matched_records << hash
             break
           end  
         end
       end
-
-      File.open("store.json","w") do |f|
-        f.puts json_store.to_json
-      end
+      puts "Matched: records: #{(matched_records)}"
     end
 
     private
@@ -40,7 +34,7 @@ module NosqlDb
       unless check_write_done?
         puts "Write is going on, waiting for it to finish"
         sleep(0.01)
-      end  
+      end
     end
 
     def check_write_done?

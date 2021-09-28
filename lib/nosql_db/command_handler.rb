@@ -14,11 +14,14 @@ module NosqlDb
       when '--help',nil
         help
       when 'insert'
-        insert_record = NosqlDb::Insert.new()
+        insert_record = NosqlDb::Insert.new
         insert_record.save(ARGV.last)
       when 'delete'
-        insert_record = NosqlDb::Delete.new(ARGV.last)
-        insert_record.find_and_delete
+        delete_record = NosqlDb::Delete.new(ARGV.last)
+        delete_record.find_and_delete
+      when 'find'
+        find_record = NosqlDb::Find.new(ARGV.last)
+        find_record.search
       else
         puts "wrong command, please try again"
       end
