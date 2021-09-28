@@ -12,7 +12,6 @@ module NosqlDb
 
     def search
       @matched_records = []
-      sleep_if_writting
       
       json_store = JSON.parse(@file_data)
 
@@ -30,18 +29,7 @@ module NosqlDb
     end
 
     private
-
-    def sleep_if_writting
-      unless check_write_done?
-        puts "Write is going on, waiting for it to finish"
-        sleep(0.01)
-      end
-    end
-
-    def check_write_done?
-      !Insert.new.insert_done?
-    end
-
+    
     def print_results
       results = []
 
@@ -52,7 +40,7 @@ module NosqlDb
           results << hash.slice(*@fields)
         end
       end
-      
+
       puts "Matched: records -"
       results.each do |hash|
         puts "\s\sRecord: fields: #{hash.keys.join(',')}, values: #{hash.values.join(' ')}"

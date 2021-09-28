@@ -21,6 +21,9 @@ Basic cli for performing Nosql insert,find, delete queries. It stores the data a
 
 3. Run `./bin/nosql_db delete <key-value>` to be delete a documents.
     Eg: `./bin/nosql_db delete 'b,7'`
+## Addition
+  * Have implemented basic read block considering the CAP theorem, to show the consistent data.
+
 ## Dependency
 * Ruby: 2.5.7
 ## Contributing
